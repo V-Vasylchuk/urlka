@@ -4,7 +4,7 @@ import userway.test.urlka.dto.UrlDto;
 import userway.test.urlka.model.Url;
 
 public interface UrlService {
-    Url save(Url url);
+    void save(Url url);
 
     String getShortLink(UrlDto urlDto);
 

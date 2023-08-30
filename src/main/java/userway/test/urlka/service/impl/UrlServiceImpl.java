@@ -19,8 +19,8 @@ public class UrlServiceImpl implements UrlService {
     private Shortener shortener;
 
     @Override
-    public Url save(Url url) {
-        return urlRepository.save(url);
+    public void save(Url url) {
+        urlRepository.save(url);
     }
 
     @Override
@@ -43,32 +43,4 @@ public class UrlServiceImpl implements UrlService {
         }
         throw new UrlNotFoundException("Original URL not found by short link: " + shortLink);
     }
-
-    /*    public String generateShortLink(String originalLink) {
-        String prefix = "http://short:";
-        if (isLinkValid(originalLink)) {
-            String hash = DigestUtils.md5DigestAsHex(
-                    originalLink.getBytes(StandardCharsets.UTF_8));
-            String shortLink = prefix + hash.substring(0, 4);
-            for (int i = 0; i < hash.length() - 4; i++) {
-                if (urlRepository.findByShortLink(prefix + hash.substring(i, i + 4)).isEmpty()) {
-                    shortLink = prefix + hash.substring(i, i + 4);
-                    break;
-                }
-                if (i == 27) {
-                    hash = DigestUtils.md5DigestAsHex(
-                            hash.getBytes(StandardCharsets.UTF_8));
-                    i = 0;
-                }
-            }
-            return shortLink;
-        }
-        throw new InvalidLinkException("Please write a valid link");
-    }
-
-    private boolean isLinkValid(String link) {
-        return link.matches("((http|https)://)(www.)?"
-        + "[a-zA-Z0-9@:%._\\+~#?&//=]{2,256}\\.[a-z]"
-        + "{2,6}\\b([-a-zA-Z0-9@:%._\\+~#?&//=]*)");
-    }*/
 }
