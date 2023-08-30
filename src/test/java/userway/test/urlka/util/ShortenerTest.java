@@ -1,7 +1,6 @@
 package userway.test.urlka.util;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import userway.test.urlka.exceptions.InvalidLinkException;
 import userway.test.urlka.repository.UrlRepository;
@@ -12,11 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 
-
 @SpringBootTest
 class ShortenerTest {
-    @Autowired
-    private Shortener shortener;
 
     @Test
     public void testGenerateShortLink_ValidLink() {
@@ -32,9 +28,7 @@ class ShortenerTest {
         UrlRepository mockRepository = mock(UrlRepository.class);
         Shortener shortener = new Shortener(mockRepository);
         String originalLink = "invalid-link";
-        assertThrows(InvalidLinkException.class, () -> {
-            shortener.generateShortLink(originalLink);
-        });
+        assertThrows(InvalidLinkException.class, () -> shortener.generateShortLink(originalLink));
     }
 
     @Test
